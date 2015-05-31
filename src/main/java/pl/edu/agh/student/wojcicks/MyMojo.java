@@ -22,60 +22,64 @@ import org.apache.maven.plugin.MojoExecutionException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Goal which touches a timestamp file.
  *
  * @goal touch
- * 
  * @phase process-sources
  */
-public class MyMojo
-    extends AbstractMojo
-{
-    /**
-     * Location of the file.
-     * @parameter expression="${project.build.directory}"
-     * @required
-     */
-    private File outputDirectory;
+public class MyMojo extends AbstractMojo {
 
-    public void execute()
-        throws MojoExecutionException
-    {
-        File f = outputDirectory;
+  /**
+   * Location of the file.
+   *
+   * @parameter expression="${project.build.directory}"
+   * @required
+   */
+  private File outputDirectory;
+  private File inputFile;
+  private String packageName;
 
-        if ( !f.exists() )
-        {
-            f.mkdirs();
-        }
+  public void execute() throws MojoExecutionException {
+    File f = outputDirectory;
 
-        File touch = new File( f, "touch.txt" );
-
-        FileWriter w = null;
-        try
-        {
-            w = new FileWriter( touch );
-
-            w.write( "touch.txt" );
-        }
-        catch ( IOException e )
-        {
-            throw new MojoExecutionException( "Error creating file " + touch, e );
-        }
-        finally
-        {
-            if ( w != null )
-            {
-                try
-                {
-                    w.close();
-                }
-                catch ( IOException e )
-                {
-                    // ignore
-                }
-            }
-        }
+    if (!f.exists()) {
+      f.mkdirs();
     }
+
+    JsonReader jsonReader = new JsonReader(inputFile);
+    try {
+      jsonReader.execute();
+    } catch (IOException e) {
+      throw new MojoExecutionException("Error executing reader.", e);
+    }
+    Map<String, ClassRepresentation> classes = jsonReader.getClasses();
+    Set<String> keys = classes.keySet();
+    for (String key : keys) {
+      File touch = new File(f, key);
+
+      FileWriter w = null;
+      try {
+        w = new FileWriter(touch);
+        ClassRepresentation cr = classes.get(key);
+        cr.setPackageName(packageName);
+        w.write(cr.toString());
+      } catch (IOException e) {
+        throw new MojoExecutionException("Error creating file " + touch, e);
+      } finally {
+        if (w != null) {
+          try {
+            w.close();
+          } catch (IOException e) {
+            // ignore
+          }
+        }
+      }
+    }
+
+
+  }
 }

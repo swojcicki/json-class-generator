@@ -1,0 +1,12 @@
+{
+    "name": "slawek",
+    "paid": true,
+    "account": {
+        "p": "a",
+        "u": "a"
+    },
+    "pti": ["a", "b"],
+    "pta": [
+        {}
+    ]
+}
