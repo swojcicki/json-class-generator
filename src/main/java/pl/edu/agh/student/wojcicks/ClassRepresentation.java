@@ -41,8 +41,8 @@ public class ClassRepresentation {
     sb.append(NEW_LINE);
     Set<String> keys = fields.keySet();
     for (String key : keys) {
-      if (fields.get(key).equals("List")) {
-        sb.append(IND).append("private ").append(fields.get(key)).append(" ").append(key).append(" = new ArrayList()").append(";").append(NEW_LINE);
+      if (fields.get(key).startsWith("List")) {
+        sb.append(IND).append("private ").append(fields.get(key)).append(" ").append(key).append(" = new Array").append(fields.get(key)).append("()").append(";").append(NEW_LINE);
       } else {
         sb.append(IND).append("private ").append(fields.get(key)).append(" ").append(key).append(";").append(NEW_LINE);
       }

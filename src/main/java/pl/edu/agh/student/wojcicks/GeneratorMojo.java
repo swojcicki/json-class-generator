@@ -31,7 +31,7 @@ import java.util.Set;
  * @goal touch
  * @phase process-sources
  */
-public class MyMojo extends AbstractMojo {
+public class GeneratorMojo extends AbstractMojo {
 
   /**
    * Location of the file.
@@ -47,7 +47,7 @@ public class MyMojo extends AbstractMojo {
     File f = outputDirectory;
 
     if (!f.exists()) {
-      f.mkdirs();
+      boolean mkdirs = f.mkdirs();
     }
 
     JsonReader jsonReader = new JsonReader(inputFile);
@@ -81,5 +81,17 @@ public class MyMojo extends AbstractMojo {
     }
 
 
+  }
+
+  public void setOutputDirectory(File outputDirectory) {
+    this.outputDirectory = outputDirectory;
+  }
+
+  public void setInputFile(File inputFile) {
+    this.inputFile = inputFile;
+  }
+
+  public void setPackageName(String packageName) {
+    this.packageName = packageName;
   }
 }

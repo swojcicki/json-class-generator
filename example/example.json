@@ -1,12 +1,23 @@
 {
-    "name": "slawek",
-    "paid": true,
-    "account": {
-        "p": "a",
-        "u": "a"
-    },
-    "pti": ["a", "b"],
-    "pta": [
-        {}
-    ]
+  "name": "slawek",
+  "paid": true,
+  "account": {
+    "p": "a",
+    "u": "a"
+  },
+  "pti": [
+    "a",
+    "b"
+  ],
+  "pts": [
+    1,
+    2
+  ],
+  "pta": [
+    {"title": "a"},
+    {
+      "title": "b",
+      "content": "ba"
+    }
+  ]
 }

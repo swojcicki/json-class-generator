@@ -77,14 +77,19 @@ public class JsonReader {
       cr.put(key, StringUtils.firstUpperCase(key));
       addClassRepresentation((JSONObject) value, StringUtils.firstUpperCase(key));
     } else if (value instanceof JSONArray) {
-      cr.put(key, "List");
 
       JSONArray ja = (JSONArray) value;
       int l = ja.length();
+      String generics = "";
       for (int i = 0; i < l; i++) {
-//        check(cr, key, value);
-        //todo
+        Object jo = ja.get(i);
+        if (jo instanceof JSONObject) {
+          generics = "<" + StringUtils.firstUpperCase(key) + ">";
+          addClassRepresentation((JSONObject) jo, StringUtils.firstUpperCase(key));
+        }
       }
+      cr.put(key, "List" + generics);
+
     }
   }
 
