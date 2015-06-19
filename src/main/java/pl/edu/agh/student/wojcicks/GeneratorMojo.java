@@ -40,7 +40,20 @@ public class GeneratorMojo extends AbstractMojo {
    * @required
    */
   private File outputDirectory;
+
+  /**
+   * Input file.
+   *
+   * @parameter expression="${project.build.directory}"
+   * @required
+   */
   private File inputFile;
+
+  /**
+   * Package name.
+   *
+   * @parameter expression="${project.build.directory}"
+   */
   private String packageName;
 
   public void execute() throws MojoExecutionException {
@@ -59,7 +72,7 @@ public class GeneratorMojo extends AbstractMojo {
     Map<String, ClassRepresentation> classes = jsonReader.getClasses();
     Set<String> keys = classes.keySet();
     for (String key : keys) {
-      File touch = new File(f, key);
+      File touch = new File(f, key + ".java");
 
       FileWriter w = null;
       try {
