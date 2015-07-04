@@ -70,14 +70,14 @@ public class GeneratorMojo extends AbstractMojo {
       throw new MojoExecutionException("Error executing reader.", e);
     }
     Map<String, ClassRepresentation> classes = jsonReader.getClasses();
-    Set<String> keys = classes.keySet();
-    for (String key : keys) {
-      File touch = new File(f, key + ".java");
+    Set<String> classNames = classes.keySet();
+    for (String className : classNames) {
+      File touch = new File(f, className + ".java");
 
       FileWriter w = null;
       try {
         w = new FileWriter(touch);
-        ClassRepresentation cr = classes.get(key);
+        ClassRepresentation cr = classes.get(className);
         cr.setPackageName(packageName);
         w.write(cr.toString());
       } catch (IOException e) {
