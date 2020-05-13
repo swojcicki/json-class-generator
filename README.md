@@ -4,7 +4,7 @@
 
 ## Usage
 
-### Class generator for JSON
+### Clone and install
 
 ```
 git clone https://github.com/swojcicki/json-class-generator.git
@@ -20,7 +20,7 @@ mvn clean install
   <artifactId>json-class-generator</artifactId>
   <version>0.1</version>
   <configuration>
-    <inputFile>${basedir}/src/main/resources/app.json</inputFile>
+    <inputFile>${basedir}/src/main/resources/sample.json</inputFile>
     <outputDirectory>${basedir}/src/main/java/pl/edu/agh/student/wojcicks/app/json</outputDirectory>
     <packageName>pl.edu.agh.student.wojcicks.app.json</packageName>
   </configuration>
