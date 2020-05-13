@@ -1,5 +1,10 @@
-# json-class-generator
-Class generator for JSON
+# json-class-generator ![Java CI with Maven](https://github.com/swojcicki/json-class-generator/workflows/Java%20CI%20with%20Maven/badge.svg)
+
+## About
+
+## Usage
+
+### Class generator for JSON
 
 ```
 git clone https://github.com/swojcicki/json-class-generator.git
@@ -7,7 +12,7 @@ cd json-class-generator
 mvn clean install
 ```
 
-Plugin configuration.
+### Plugin configuration.
 
 ```
 <plugin>
@@ -29,7 +34,7 @@ Plugin configuration.
 </plugin>
 ```
 
-Running.
+### Running.
 
 ```
 mvn clean json-class-generator:touch
