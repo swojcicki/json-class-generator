@@ -12,8 +12,7 @@ cd json-class-generator
 mvn clean install
 ```
 
-### Plugin configuration.
-
+### Plugin configuration
 ```
 <plugin>
   <groupId>pl.edu.agh.student.wojcicks</groupId>
@@ -34,8 +33,7 @@ mvn clean install
 </plugin>
 ```
 
-### Running.
-
+### Running
 ```
 mvn clean json-class-generator:touch
 ```
