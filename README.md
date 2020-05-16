@@ -1,5 +1,4 @@
-# json-class-generator 
-![Java CI with Maven](https://github.com/swojcicki/json-class-generator/workflows/Java%20CI%20with%20Maven/badge.svg)
+# json-class-generator ![Java CI with Maven](https://github.com/swojcicki/json-class-generator/workflows/Java%20CI%20with%20Maven/badge.svg)
 
 ## About
 This project helps to generate Java classes from existing JSON file.
