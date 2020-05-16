@@ -20,6 +20,11 @@ public class JsonReader {
   private File f;
   private Map<String, ClassRepresentation> classes;
 
+  public JsonReader(File f) {
+    this.f = f;
+    this.classes = new HashMap<>();
+  }
+
   public static void main(String[] args) {
     try {
       System.out.println(new File(".").getAbsolutePath());
@@ -31,11 +36,6 @@ public class JsonReader {
     } catch (IOException e) {
       e.printStackTrace(); // for test purpose
     }
-  }
-
-  public JsonReader(File f) {
-    this.f = f;
-    this.classes = new HashMap<String, ClassRepresentation>();
   }
 
   public void execute() throws IOException {
@@ -73,23 +73,26 @@ public class JsonReader {
       cr.put(key, "long");
     } else if (value instanceof Boolean) {
       cr.put(key, "boolean");
-    } else if (value instanceof JSONObject) {
-      cr.put(key, StringUtils.firstUpperCase(key));
-      addClassRepresentation((JSONObject) value, StringUtils.firstUpperCase(key));
-    } else if (value instanceof JSONArray) {
+    } else {
+      String capitalizedKey = StringUtils.firstUpperCase(key);
+      if (value instanceof JSONObject) {
+        cr.put(key, capitalizedKey);
+        addClassRepresentation((JSONObject) value, capitalizedKey);
+      } else if (value instanceof JSONArray) {
 
-      JSONArray ja = (JSONArray) value;
-      int l = ja.length();
-      String generics = "";
-      for (int i = 0; i < l; i++) {
-        Object jo = ja.get(i);
-        if (jo instanceof JSONObject) {
-          generics = "<" + StringUtils.firstUpperCase(key) + ">";
-          addClassRepresentation((JSONObject) jo, StringUtils.firstUpperCase(key));
+        JSONArray ja = (JSONArray) value;
+        int l = ja.length();
+        String generics = "";
+        for (int i = 0; i < l; i++) {
+          Object jo = ja.get(i);
+          if (jo instanceof JSONObject) {
+            generics = "<" + capitalizedKey + ">";
+            addClassRepresentation((JSONObject) jo, capitalizedKey);
+          }
         }
-      }
-      cr.put(key, "List" + generics);
+        cr.put(key, "List" + generics);
 
+      }
     }
   }
 

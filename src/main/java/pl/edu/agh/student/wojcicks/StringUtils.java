@@ -5,12 +5,14 @@ package pl.edu.agh.student.wojcicks;
  *
  * @author Slawomir Wojcicki
  */
-public class StringUtils {
+public final class StringUtils {
 
-  public static String firstUpperCase(String s) {
-    StringBuilder sb = new StringBuilder(s.length());
-    sb.append(s.substring(0, 1).toUpperCase());
-    sb.append(s.substring(1));
-    return sb.toString();
+  protected StringUtils() {
+    throw new UnsupportedOperationException();
+  }
+
+  public static String firstUpperCase(String text) {
+    if (text == null) return null;
+    return text.substring(0, 1).toUpperCase() + text.substring(1);
   }
 }

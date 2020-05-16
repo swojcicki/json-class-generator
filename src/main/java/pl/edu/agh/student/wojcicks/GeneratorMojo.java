@@ -36,7 +36,7 @@ public class GeneratorMojo extends AbstractMojo {
   /**
    * Location of the file.
    *
-   * @parameter expression="${project.build.directory}"
+   * @parameter property="project.build.directory"
    * @required
    */
   private File outputDirectory;
@@ -44,7 +44,7 @@ public class GeneratorMojo extends AbstractMojo {
   /**
    * Input file.
    *
-   * @parameter expression="${project.build.directory}"
+   * @parameter property="project.build.directory"
    * @required
    */
   private File inputFile;
@@ -52,7 +52,7 @@ public class GeneratorMojo extends AbstractMojo {
   /**
    * Package name.
    *
-   * @parameter expression="${project.build.directory}"
+   * @parameter property="project.build.directory"
    */
   private String packageName;
 
